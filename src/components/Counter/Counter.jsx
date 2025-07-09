@@ -38,7 +38,7 @@ export default function Counter({ initialCount }) {
 
   const handleIncrement = useCallback(function handleIncrement() {
     setCounter((prevCounter) => prevCounter + 1);
-  },[])
+  },[]);
 
   return (
     <section className="counter">
@@ -58,3 +58,5 @@ export default function Counter({ initialCount }) {
     </section>
   );
 };
+
+/* to complete  */
