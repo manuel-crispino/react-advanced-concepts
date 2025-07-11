@@ -31,18 +31,19 @@ export default function Counter({ initialCount }) {
   log('<Counter /> rendered', 1);
 
   const initialCountIsPrime = useMemo( () =>  isPrime(initialCount),[initialCount]);
+  const randomId = ()=> Math.random()*1000; 
 
-  const [counterChanges, setCounterChanges] = useState([initialCount]);
+  const [counterChanges, setCounterChanges] = useState([ {value: initialCount, id : randomId()}]);
 
   const currentCounter = counterChanges.reduce(
-    (prevCounter, counterChange)=> prevCounter +counterChange, 0);
+    (prevCounter, counterChange)=> prevCounter + counterChange.value, 0);
 
   const handleDecrement = useCallback(function handleDecrement() {
-    setCounterChanges((prevCounterChanges) => [-1,...prevCounterChanges]);
+    setCounterChanges((prevCounterChanges) => [{value: -1 , id : randomId() },...prevCounterChanges]);
   },[])
 
   const handleIncrement = useCallback(function handleIncrement() {
-    setCounterChanges((prevCounterChanges) => [1,...prevCounterChanges ]);
+    setCounterChanges((prevCounterChanges) => [{value: 1 , id : randomId() },...prevCounterChanges ]);
   },[]);
 
   return (
